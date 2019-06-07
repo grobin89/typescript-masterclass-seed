@@ -1,9 +1,14 @@
 interface Person {
     name: string;
     age: number;
+    address: {};
 }
 
-const person: Required<Person> = {
+type MyPick<T, K extends keyof T> = {
+    [P in K]: T[P]
+};
+
+const person: Pick<Person, 'name' | 'age'> = {
     name: 'Greg',
     age: 30
-}
+};
