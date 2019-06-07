@@ -3,17 +3,20 @@ interface Person {
     age: number;
 }
 
+/**
+ * a clone of Partial<> type
+ */
+type MyPartial<T> = {
+    [P in keyof T]?: T[P]
+}
+
+function updatePerson(person: Person, prop: Partial<Person>) {
+    return { ...person, ...prop };
+}
+
 const person: Person = {
     name: 'Greg',
     age: 30
 }
 
-type MyReadonly<T> = {
-    readonly [P in keyof T]: T[P]
-};
-
-function freeze<T>(obj: T): MyReadonly<T> {
-    return Object.freeze(obj);
-}
-
-const newPerson = freeze(person);
+updatePerson(person, {name: 'Fred'});
