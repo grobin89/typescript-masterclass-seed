@@ -14,7 +14,7 @@ interface PayPal {
 }
 
 type CheckoutCard = Order & Stripe;
-type CheckoutPayPak = Order & PayPal;
+type CheckoutPayPal = Order & PayPal;
 
 const order: Order = {
     id: 'vxd32sd',
@@ -27,3 +27,9 @@ const orderCard: CheckoutCard = {
     card: '2000 3446 3234 4321',
     cvc: '123'
 };
+
+const orderPayPal: CheckoutPayPal = {
+    ...order,
+    email: '123@abc.com'
+};
+
