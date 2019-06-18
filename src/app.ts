@@ -7,19 +7,21 @@ const bar = new Foo();
 console.log(Object.getPrototypeOf(bar) === Foo.prototype);
 
 class Song {
+    public kind: 'song';
     constructor(public title: string, public duration: number) {}
 }
 
 class Playlist {
+    public kind: 'playlist';
     constructor(public name: string, public songs: Song[]) {}
 }
 
 function isSong(item: any): item is Song {
-    return item instanceof Song;
+    return 'title' in item;
 }
 
 function getItemName(item: Song | Playlist) {
-    if(isSong(item)) {
+    if(item.kind === 'song') {
         return item.title;
     }
     return item.name;
